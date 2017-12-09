@@ -1,0 +1,11 @@
+version: '3.3'
+
+
+services:
+
+
+  sassariinternalplayer:
+    image: r.cfcr.io/dariocaruso/dottgonzo/sassariinternalplayer:master
+    ports:
+      - 80:80
+    restart: always

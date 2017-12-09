@@ -38,27 +38,20 @@ export default {
   },
   mounted() {
     let hlsPort = 1980
-    let streamhost
-    let streamchannel
-    if (window.location.href.split('streamPort=').length > 1) {
-      hlsPort = window.location.href.split('streamPort=')[1].split('&')[0]
-    }
+    let streamhost = window.location.href.split('//')[1].split('/')[0].split(':')[0]
+    let streamchannel = 'test'
+    let ratio43 = false
+    if (window.location.href.split('streamPort=').length > 1) hlsPort = window.location.href.split('streamPort=')[1].split('&')[0]
 
-    if (window.location.href.split('streamUrl=').length > 1) {
-      streamhost = window.location.href.split('streamUrl=')[1].split('&')[0]
-    } else {
-      streamhost = window.location.href.split('//')[1].split('/')[0].split(':')[0]
-    }
+    if (window.location.href.split('streamUrl=').length > 1) window.location.href.split('streamUrl=')[1].split('&')[0]
 
-    if (window.location.href.split('channel=').length > 1) {
-      streamchannel = window.location.href.split('channel=')[1].split('&')[0]
-    } else {
-      streamchannel = 'test'
-    }
+    if (window.location.href.split('channel=').length > 1) streamchannel = window.location.href.split('channel=')[1].split('&')[0]
+
+    if (window.location.href.split('ratio43=').length > 1) ratio43 = true
 
     const options = {
       channel: streamchannel,
-      ratio43: true,
+      ratio43: ratio43,
       poster: false,
       el: 'streamvideo', // default is videojs
       hostname: streamhost,

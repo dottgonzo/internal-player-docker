@@ -39,6 +39,7 @@ export default {
   mounted() {
     let hlsPort = 1980
     let streamhost
+    let streamchannel
     if (window.location.href.split('streamPort=').length > 1) {
       hlsPort = window.location.href.split('streamPort=')[1].split('&')[0]
     }
@@ -49,8 +50,14 @@ export default {
       streamhost = window.location.href.split('//')[1].split('/')[0].split(':')[0]
     }
 
+    if (window.location.href.split('channel=').length > 1) {
+      streamchannel = window.location.href.split('channel=')[1].split('&')[0]
+    } else {
+      streamchannel = 'test'
+    }
+
     const options = {
-      channel: 'streamcc',
+      channel: streamchannel,
       ratio43: true,
       poster: false,
       el: 'streamvideo', // default is videojs
